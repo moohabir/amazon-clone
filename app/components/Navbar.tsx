@@ -1,23 +1,27 @@
+import Link from 'next/link';
+
 function Navbar() {
   return (
-    <div className="flex justify-between items-center p-10 bg-slate-800 text-white h-16">
+    <div className="flex gap-20 items-center p-10 bg-slate-800 text-white h-16">
       <h1>AmazonClone</h1>
 
       <p>Delivery to Germany</p>
-      <div>
-        <select className="w-16 h-16 bg-slate-200 text-black">
+      <div className="flex">
+        <select className=" flex w-16 h-16 bg-slate-200 text-black">
           <option>All</option>
+
           <option>Arts and Crafts</option>
           <option>Automotive</option>
           <option>Baby</option>
+          <option>Electronics</option>
           <option>Beaty and Personal care</option>
         </select>
         <input
           placeholder="Search Amazon clone"
-          className=" w-48 h-16 rounded-md"
+          className=" w-96 h-16 rounded-md "
         />
       </div>
-      <select className="w-16 h-16 bg-slate-800">
+      <select className="w-16 h-8 bg-slate-800">
         <option>English-En</option>
         <option>Deutsch-DE</option>
         <option>Eng</option>
