@@ -17,8 +17,22 @@ function Navbar() {
           className=" w-48 h-16 rounded-md"
         />
       </div>
-      <p>Home</p>
-      <p>Home</p>
+      <select className="w-16 h-16 bg-slate-800">
+        <option>English-En</option>
+        <option>Deutsch-DE</option>
+        <option>Eng</option>
+        <option>Eng</option>
+        <option>Eng</option>
+      </select>
+      <select className="w-48 h-16 bg-slate-800">
+        <option>Hello, Sign in Account and Lists</option>
+
+        <option>Sign in New customer? Start here.</option>
+
+        <option>Eng</option>
+        <option>Eng</option>
+        <option>Eng</option>
+      </select>
       <button>Cart</button>
     </div>
   );
