@@ -1,11 +1,11 @@
 function Navbar() {
   return (
-    <div className="flex justify-between items-center px-5 py-10 bg-slate-800 text-white h-32">
+    <div className="flex justify-between items-center p-10 bg-slate-800 text-white h-16">
       <h1>AmazonClone</h1>
 
       <p>Delivery to Germany</p>
       <div>
-        <select className="w-16 h-16 bg-slate-200">
+        <select className="w-16 h-16 bg-slate-200 text-black">
           <option>All</option>
           <option>Arts and Crafts</option>
           <option>Automotive</option>
