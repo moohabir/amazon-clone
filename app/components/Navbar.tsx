@@ -28,10 +28,6 @@ function Navbar() {
         <option>Hello, Sign in Account and Lists</option>
 
         <option>Sign in New customer? Start here.</option>
-
-        <option>Eng</option>
-        <option>Eng</option>
-        <option>Eng</option>
       </select>
       <button>Cart</button>
     </div>
