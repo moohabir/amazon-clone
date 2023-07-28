@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 function Navbar() {
   return (
-    <div className="flex gap-20 items-center p-10 bg-slate-800 text-white h-16">
+    <div className="flex gap-20 items-center p-10 bg-slate-800 text-white h-16 ">
       <h1>AmazonClone</h1>
 
       <p>Delivery to Germany</p>
