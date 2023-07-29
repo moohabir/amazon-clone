@@ -1,0 +1,36 @@
+export interface Product {
+  _id: number | string;
+  name: any;
+  slug: string;
+  title: string;
+  description: string;
+  _createdAt: string;
+  blockContent: any;
+  current: string;
+  body: any;
+  author: any;
+  image: string;
+  mainImage: any;
+  asset: string;
+  _ref: string;
+}
+
+export interface Cart {
+  _id: number | string;
+  title: string;
+  description: string;
+  _createdAt: string;
+  price: number;
+  amount: number;
+}
+export interface initialStateProps {
+  cart: [];
+  _id: number | string;
+  title: string;
+  description: string;
+  _createdAt: string;
+  price: number;
+  amount: number;
+  totalAmount: number;
+  totalPrice: number;
+}

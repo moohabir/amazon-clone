@@ -3,7 +3,9 @@ import Link from 'next/link';
 function Navbar() {
   return (
     <div className="flex gap-20 items-center p-10 bg-slate-800 text-white h-16 ">
-      <h1>AmazonClone</h1>
+      <Link href="/">
+        <h1>AmazonClone</h1>
+      </Link>
 
       <p>Delivery to Germany</p>
       <div className="flex">
@@ -33,7 +35,9 @@ function Navbar() {
 
         <option>Sign in New customer? Start here.</option>
       </select>
-      <button>Cart</button>
+      <Link href="/cart">
+        <button>Cart</button>
+      </Link>
     </div>
   );
 }
