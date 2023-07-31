@@ -24,6 +24,7 @@ export default defineType({
       title: 'Description',
       type: 'string',
     }),
+
     defineField({
       name: 'author',
       title: 'Author',

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '@/redux/features/cartSlice';
 
 export default function ProductList({ product }) {
+  console.log(product);
   const dispatch = useDispatch();
 
   return (

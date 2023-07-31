@@ -13,12 +13,12 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const item = action.payload;
       const existingItem = state.cart.find((i) => i.id === item.id);
-      if (existingItem) {
-        existingItem.amount += 1;
-      } else {
-        const newItem = { ...item, amount: 1 }; // Add amount field to the item
-        state.cart.push(newItem);
-      }
+      // if (existingItem) {
+      // existingItem.amount += 1;
+      // } else {
+      const newItem = { ...item, amount: 1 }; // Add amount field to the item
+      state.cart.push(newItem);
+      //}
     },
     clearCart: (state) => {
       state.cart = [];
