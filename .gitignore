@@ -4,6 +4,11 @@
 node_modules
 /.pnp
 .pnp.js
+.sanity/runtime
+dist/
+
+
+
 
 # testing
 /coverage
@@ -15,8 +20,10 @@ node_modules
 # production
 /build
 
+
 # misc
 .DS_Store
+
 *.pem
 
 # debug
@@ -25,12 +32,19 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env*.local
 .env.local
+
+.env
+
+# sanity
+.sanity
 
 # vercel
 .vercel
-.env
+
 
 # typescript
 *.tsbuildinfo
+env.ts
 next-env.d.ts

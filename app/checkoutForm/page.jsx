@@ -1,6 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import {
+  CardElement,
+  useStripe,
+  useElements,
+  Elements,
+} from '@stripe/react-stripe-js';
 import { useSelector } from 'react-redux';
 
 const CheckoutForm = () => {
@@ -82,29 +87,27 @@ const CheckoutForm = () => {
 
   return (
     <div className="bg-slate-400 text-white ">
-      <div className=" border border-slate-700 rounded-md p-10 hover:bg-slate-800">
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: '16px',
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#ffff',
+              '::placeholder': {
                 color: '#ffff',
-                '::placeholder': {
-                  color: '#ffff',
-                },
-              },
-              invalid: {
-                color: '#9e2146',
               },
             },
-          }}
-        />
-      </div>
+            invalid: {
+              color: '#9e2146',
+            },
+          },
+        }}
+      />
       {paymentError && <p className="error-message">{paymentError}</p>}
       {paymentSuccess && <p className="success-message">Payment successful!</p>}
       <button
         onClick={handlePayment}
-        className="pay-button"
+        className=""
       >
         Pay Now
       </button>
