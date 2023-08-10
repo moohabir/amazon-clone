@@ -26,7 +26,7 @@ export default async function Product() {
         {products.map((product) => (
           <ProductList
             product={product}
-            key={product.slug}
+            key={product._id}
           />
         ))}
       </div>

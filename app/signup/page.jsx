@@ -1,32 +1,54 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { register, reset } from '@/redux/features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { user, isError, isSuccess, message, isLoading } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+    if (isSuccess || user) {
+      router.push('/login');
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, router, dispatch]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/signup', {
+
+    if (password !== confirmPassword) {
+      console.log('passwords do not match');
+    } else {
+      const userData = {
         name,
         email,
         password,
-      });
+      };
 
-      console.log('User Created', { status: 201 }, response.data);
-      router.push('/login');
-    } catch (error) {
-      console.log({ Error: error.message });
+      dispatch(register(userData));
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="border border-slate-200 rounded-md p-10 hover:bg-slate-100">
@@ -52,10 +74,13 @@ export default function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        {/*<input
+        <input
           type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="Confirm password"
-  />*/}
+          required
+        />
         <button type="submit">Sign up</button>
       </form>
     </div>

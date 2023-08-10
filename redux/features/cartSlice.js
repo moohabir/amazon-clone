@@ -13,13 +13,14 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const item = action.payload;
       const existingItem = state.cart.find((i) => i.id === item.id);
-      // if (existingItem) {
+      //if (existingItem) {
       // existingItem.amount += 1;
-      // } else {
-      const newItem = { ...item, amount: 1 }; // Add amount field to the item
+      //} else {
+      const newItem = { ...item, amount: 1 };
       state.cart.push(newItem);
       //}
     },
+
     clearCart: (state) => {
       state.cart = [];
     },
@@ -35,8 +36,12 @@ const cartSlice = createSlice({
       const cartItem = state.cart.find((item) => item.id === action.payload.id);
       if (cartItem.amount > 1) {
         cartItem.amount -= 1;
+      } else if (cartItem.amount === 1) {
+        const itemId = action.payload.id;
+        state.cart = state.cart.filter((item) => item.id !== itemId);
       }
     },
+
     calculateTotals: (state) => {
       let totalAmount = 0;
       let totalPrice = 0;

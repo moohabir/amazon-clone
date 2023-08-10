@@ -1,28 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+
+import { login, reset } from '@/redux/features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { user, isError, isSuccess, message, isLoading } = useSelector(
+    (state) => state.user
+  );
+  console.log(user);
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('/api/login', {
-        email,
-        password,
-      });
-      console.log('User Loged in', { status: 200 }, response.data);
-      router.push('/');
-    } catch (error) {
-      console.log({ Error: error.message });
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
     }
+    if (isSuccess || user) {
+      router.push('/');
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, router, dispatch]);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="border border-slate-200 rounded-md p-10 hover:bg-slate-100">

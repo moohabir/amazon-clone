@@ -9,7 +9,8 @@ ConnectMongoDb();
 
 export async function POST(request) {
   try {
-    const { email, password } = request.json;
+    const requestBody = await request.json();
+    const { email, password } = requestBody;
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json({ Error: 'User not Exist' }, { status: 400 });
@@ -33,10 +34,12 @@ export async function POST(request) {
       expiresIn: '1d',
     });
     const response = NextResponse.json(
-      { Success: true },
+      { isLoggedin: true, usertokenData },
       { Message: 'Login Successful' }
     );
     response.cookies.set('token', token, { httpOnly: true });
+
+    //response.cookies.get('token');
     return response;
   } catch (error) {
     console.log(error.message);

@@ -1,23 +1,28 @@
 'use client';
-import { useAppSelector } from '@/redux/store';
+
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
-//import type { RootState } from '@/redux/store';
+
 import { calculateTotals, clearCart } from '@/redux/features/cartSlice';
 import CartItems from '@/components/CartItems';
 import { useEffect } from 'react';
+import Login from '../login/page';
+import { useRouter } from 'next/navigation';
 
 export default function Cart() {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { cart, totalAmount, totalPrice } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
   console.log(cart);
 
   useEffect(() => {
     dispatch(calculateTotals());
   }, [dispatch, cart]);
 
-  if (cart.length === 0) {
+  if (totalAmount === 0) {
     return (
       <div className=" flex flex-col items-center justify-between p-24 gap-10">
         <h2>Your Cart is Empty! please add items</h2>
@@ -29,19 +34,21 @@ export default function Cart() {
     <div className=" flex flex-col items-center justify-between p-24 gap-10">
       <h2>Your Cart</h2>
 
-      {cart.map((item) => (
-        <CartItems
-          item={item}
-          key={item.id}
-        />
-      ))}
+      {cart &&
+        cart.map((item) => (
+          <CartItems
+            item={item}
+            key={item._id}
+          />
+        ))}
 
       <p>Total price: ${totalPrice} </p>
       <p>Total Amount: {totalAmount}</p>
       <button onClick={() => dispatch(clearCart())}>Clear cart</button>
-      <Link href="/payment">
-        <button>Checkout</button>
-      </Link>
+
+      <button onClick={() => router.push(user ? '/payment' : '/login')}>
+        Checkout
+      </button>
     </div>
   );
 }

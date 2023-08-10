@@ -1,8 +1,7 @@
 'use client';
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './features/cartSlice';
-import userReducer from './features/userSlice';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import userReducer from './features/auth/authSlice';
 
 export const store = configureStore({
   reducer: {
